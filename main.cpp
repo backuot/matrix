@@ -1,5 +1,7 @@
 #include <iostream>
 #include <vector>
+#include <stdexcept>
+#include <sstream>
 
 using namespace std;
 
@@ -81,7 +83,7 @@ ostream& operator<<(ostream& stream, const Matrix& matrix) {
 
 bool operator==(const Matrix& lhs, const Matrix& rhs) {
   if (lhs.GetNumRows() == rhs.GetNumRows()
-    && lhs.GetNumColumns() == rhs.GetNumColumns()) {
+      && lhs.GetNumColumns() == rhs.GetNumColumns()) {
     for (int i = 0; i < lhs.GetNumRows(); ++i) {
       for (int j = 0; j < lhs.GetNumColumns(); ++j) {
         if (lhs.At(i, j) != rhs.At(i, j)) {
@@ -111,10 +113,21 @@ Matrix operator+(const Matrix& lhs, const Matrix& rhs) {
 }
 
 int main() {
+  stringstream input1;
+  stringstream input2;
+  input1 << "3 3 3 4 5 1 2 2 5 6 8\n";
+  input2 << "3 3 1 5 9 6 1 4 7 2 1\n";
   Matrix matrix1;
   Matrix matrix2;
-  cin >> matrix1;
-  cin >> matrix2;
+  input1 >> matrix1;
+  input2 >> matrix2;
+  cout << "Matrix 1:" << endl;
+  cout << matrix1;
+  cout << endl;
+  cout << "Matrix 2:" << endl;
+  cout << matrix2;
+  cout << endl;
+  cout << "Matrix 1 + Matrix 2:" << endl;
   cout << matrix1 + matrix2;
   return 0;
 }
